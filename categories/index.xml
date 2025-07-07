@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+<<<<<<< HEAD
     <title>Categories on Dan&#39;s Blog | Semiconductor Engineer &amp; Full-Stack Developer</title>
     <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Dan&#39;s Blog | Semiconductor Engineer &amp; Full-Stack Developer</description>
@@ -13,48 +14,98 @@
       <link>http://localhost:1313/categories/android-and-gaming/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/categories/android-and-gaming/</guid>
+=======
+    <title>Categories on Liva | Personal blog template</title>
+    <link>http://localhost:1313/liva/examplesite/categories/</link>
+    <description>Recent content in Categories on Liva | Personal blog template</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Oct 2019 10:07:47 +0600</lastBuildDate>
+    <atom:link href="http://localhost:1313/liva/examplesite/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android and Gaming</title>
+      <link>http://localhost:1313/liva/examplesite/categories/android-and-gaming/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/categories/android-and-gaming/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>Go Language</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/categories/go-language/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/categories/go-language/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/categories/go-language/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/categories/go-language/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>HTML</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/categories/html/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/categories/html/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/categories/html/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/categories/html/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>HTMl CSS</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/categories/html-css/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/categories/html-css/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/categories/html-css/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/categories/html-css/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>Programming Language</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/categories/programming-language/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/categories/programming-language/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/categories/programming-language/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/categories/programming-language/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>Python</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/categories/python/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/categories/python/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/categories/python/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/categories/python/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>Web Design</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/categories/web-design/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/categories/web-design/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/categories/web-design/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/categories/web-design/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
   </channel>

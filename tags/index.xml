@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+<<<<<<< HEAD
     <title>Tags on Dan&#39;s Blog | Semiconductor Engineer &amp; Full-Stack Developer</title>
     <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Dan&#39;s Blog | Semiconductor Engineer &amp; Full-Stack Developer</description>
@@ -13,41 +14,85 @@
       <link>http://localhost:1313/tags/game/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/tags/game/</guid>
+=======
+    <title>Tags on Liva | Personal blog template</title>
+    <link>http://localhost:1313/liva/examplesite/tags/</link>
+    <description>Recent content in Tags on Liva | Personal blog template</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Oct 2019 10:07:47 +0600</lastBuildDate>
+    <atom:link href="http://localhost:1313/liva/examplesite/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Game</title>
+      <link>http://localhost:1313/liva/examplesite/tags/game/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/tags/game/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>HTML</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/tags/html/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/tags/html/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/tags/html/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/tags/html/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>New</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/tags/new/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/tags/new/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/tags/new/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/tags/new/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>Photos</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/tags/photos/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/tags/photos/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/tags/photos/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/tags/photos/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>Python</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/tags/python/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/tags/python/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/tags/python/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/tags/python/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
     <item>
       <title>React</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/tags/react/</link>
       <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
       <guid>http://localhost:1313/tags/react/</guid>
+=======
+      <link>http://localhost:1313/liva/examplesite/tags/react/</link>
+      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <guid>http://localhost:1313/liva/examplesite/tags/react/</guid>
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
       <description></description>
     </item>
   </channel>

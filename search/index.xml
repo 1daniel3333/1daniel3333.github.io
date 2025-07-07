@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+<<<<<<< HEAD
     <title>Search Result on Dan&#39;s Blog | Semiconductor Engineer &amp; Full-Stack Developer</title>
     <link>http://localhost:1313/search/</link>
     <description>Recent content in Search Result on Dan&#39;s Blog | Semiconductor Engineer &amp; Full-Stack Developer</description>
@@ -8,5 +9,14 @@
     <language>en-us</language>
     <lastBuildDate></lastBuildDate>
     <atom:link href="http://localhost:1313/search/index.xml" rel="self" type="application/rss+xml" />
+=======
+    <title>Search Result on Liva | Personal blog template</title>
+    <link>http://localhost:1313/liva/examplesite/search/</link>
+    <description>Recent content in Search Result on Liva | Personal blog template</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="http://localhost:1313/liva/examplesite/search/index.xml" rel="self" type="application/rss+xml" />
+>>>>>>> 93626f42eb14a7f0af004ecce29edb001b0d480e
   </channel>
 </rss>

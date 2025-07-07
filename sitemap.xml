@@ -71,10 +71,17 @@
     <loc>https://1daniel3333.github.io/blog/post-9/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
+<<<<<<< HEAD
     <loc>https://1daniel3333.github.io/categories/html/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
     <loc>https://1daniel3333.github.io/tags/html/</loc>
+=======
+    <loc>https://1daniel3333.github.io/tags/html/</loc>
+    <lastmod>2019-10-29T10:07:47+06:00</lastmod>
+  </url><url>
+    <loc>https://1daniel3333.github.io/categories/html/</loc>
+>>>>>>> ab07a14cfc6010bfc3137ca26f4caa7eb5a8a314
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
     <loc>https://1daniel3333.github.io/categories/html-css/</loc>
@@ -89,10 +96,17 @@
     <loc>https://1daniel3333.github.io/categories/programming-language/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
+<<<<<<< HEAD
     <loc>https://1daniel3333.github.io/categories/python/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
     <loc>https://1daniel3333.github.io/tags/python/</loc>
+=======
+    <loc>https://1daniel3333.github.io/tags/python/</loc>
+    <lastmod>2019-10-29T10:07:47+06:00</lastmod>
+  </url><url>
+    <loc>https://1daniel3333.github.io/categories/python/</loc>
+>>>>>>> ab07a14cfc6010bfc3137ca26f4caa7eb5a8a314
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
     <loc>https://1daniel3333.github.io/tags/react/</loc>

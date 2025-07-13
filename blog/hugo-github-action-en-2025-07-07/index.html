@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <title>Build an Auto-Updating Personal Static Website with Hugo &#43; GitHub Actions</title>
     
@@ -41,40 +41,39 @@
 </ol>
 <blockquote>
 <p>🔗 Inspired by this GitHub Actions tutorial:<br>
-<a href="https://dev.zhgchg.li/ci-cd-%E5%AF%A6%E6%88%B0%E6%8C%87%E5%8D%97-%E4%BA%8C-github-actions-%E8%88%87-self-hosted-runner-%E4%BD%BF%E7%94%A8%E8%88%87%E5%BB%BA%E7%BD%AE%E5%A4%A7%E5%85%A8-404bd5c70040">CI/CD 實戰指南（二）GitHub Actions 與 Self-hosted Runner 使用與建置大全</a></p>
-</blockquote>
-<p><img alt="Workflow" src="/images/post/workflow.jpg"></p>
+<a href="https://dev.zhgchg.li/ci-cd-%E5%AF%A6%E6%88%B0%E6%8C%87%E5%8D%97-%E4%BA%8C-github-actions-%E8%88%87-self-hosted-runner-%E4%BD%BF%E7%94%A8%E8%88%87%E5%BB%BA%E7%BD%AE%E5%A4%A7%E5%85%A8-404bd5c70040">CI/CD 實戰指南（二）GitHub Actions 與 Self-hosted Runner 使用與建置大全</a></p></blockquote>
+<p><img src="/images/post/workflow.jpg" alt="Workflow"></p>
 <hr>
 <h2 id="-architecture-overview">🧱 Architecture Overview</h2>
 <table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cursor</td>
-<td>Develop and customize Hugo content with AI help</td>
-</tr>
-<tr>
-<td>Hugo</td>
-<td>Generate the site and manage markdown/blog files</td>
-</tr>
-<tr>
-<td>GitHub Pages</td>
-<td>Host the site statically</td>
-</tr>
-<tr>
-<td>GitHub Actions</td>
-<td>Automate content generation and deployment</td>
-</tr>
-<tr>
-<td>Python</td>
-<td>(Optional) Fetch and format external data</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Component</th>
+          <th>Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Cursor</td>
+          <td>Develop and customize Hugo content with AI help</td>
+      </tr>
+      <tr>
+          <td>Hugo</td>
+          <td>Generate the site and manage markdown/blog files</td>
+      </tr>
+      <tr>
+          <td>GitHub Pages</td>
+          <td>Host the site statically</td>
+      </tr>
+      <tr>
+          <td>GitHub Actions</td>
+          <td>Automate content generation and deployment</td>
+      </tr>
+      <tr>
+          <td>Python</td>
+          <td>(Optional) Fetch and format external data</td>
+      </tr>
+  </tbody>
 </table>
 <hr>
 <h2 id="-final-thoughts">📝 Final Thoughts</h2>

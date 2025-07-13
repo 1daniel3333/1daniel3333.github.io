@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <title>用 Hugo &#43; Github Action 打造自動更新的個人靜態網站</title>
     
@@ -20,30 +20,30 @@
 <h2 id="一技術架構概覽">一、技術架構概覽</h2>
 <p>本專案使用到的工具與技術如下：</p>
 <table>
-<thead>
-<tr>
-<th>工具</th>
-<th>介紹</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Cursor</strong></td>
-<td>AI 友善的開發環境，類似 VSCode，但內建 AI 協作功能。</td>
-</tr>
-<tr>
-<td><strong>Hugo</strong></td>
-<td>輕量級靜態網站產生器，適合技術人快速打造部落格或文件站。</td>
-</tr>
-<tr>
-<td><strong>GitHub Pages</strong></td>
-<td>GitHub 提供的免費靜態網站托管平台。</td>
-</tr>
-<tr>
-<td><strong>GitHub Actions</strong></td>
-<td>CI/CD 自動化工具，可設定類似 crontab 的排程任務。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>工具</th>
+          <th>介紹</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Cursor</strong></td>
+          <td>AI 友善的開發環境，類似 VSCode，但內建 AI 協作功能。</td>
+      </tr>
+      <tr>
+          <td><strong>Hugo</strong></td>
+          <td>輕量級靜態網站產生器，適合技術人快速打造部落格或文件站。</td>
+      </tr>
+      <tr>
+          <td><strong>GitHub Pages</strong></td>
+          <td>GitHub 提供的免費靜態網站托管平台。</td>
+      </tr>
+      <tr>
+          <td><strong>GitHub Actions</strong></td>
+          <td>CI/CD 自動化工具，可設定類似 crontab 的排程任務。</td>
+      </tr>
+  </tbody>
 </table>
 <hr>
 <h2 id="二實作流程詳解">二、實作流程詳解</h2>
@@ -71,9 +71,8 @@
 <li>GitHub Pages 自動重新部署新內容。</li>
 </ul>
 <blockquote>
-<p>🙏 特別感謝 <a href="https://dev.zhgchg.li/ci-cd-%E5%AF%A6%E6%88%B0%E6%8C%87%E5%8D%97-%E4%BA%8C-github-actions-%E8%88%87-self-hosted-runner-%E4%BD%BF%E7%94%A8%E8%88%87%E5%BB%BA%E7%BD%AE%E5%A4%A7%E5%85%A8-404bd5c70040">zhgchg 的 GitHub Actions 教學文</a>，提供完整 CI/CD 教學範例。</p>
-</blockquote>
-<p><img alt="Workflow" src="/images/post/workflow.jpg"></p>
+<p>🙏 特別感謝 <a href="https://dev.zhgchg.li/ci-cd-%E5%AF%A6%E6%88%B0%E6%8C%87%E5%8D%97-%E4%BA%8C-github-actions-%E8%88%87-self-hosted-runner-%E4%BD%BF%E7%94%A8%E8%88%87%E5%BB%BA%E7%BD%AE%E5%A4%A7%E5%85%A8-404bd5c70040">zhgchg 的 GitHub Actions 教學文</a>，提供完整 CI/CD 教學範例。</p></blockquote>
+<p><img src="/images/post/workflow.jpg" alt="Workflow"></p>
 <hr>
 <h2 id="三什麼是-cursorgithub-pagesgithub-actions">三、什麼是 Cursor、GitHub Pages、GitHub Actions？</h2>
 <h3 id="-cursor-是什麼">🔧 Cursor 是什麼？</h3>

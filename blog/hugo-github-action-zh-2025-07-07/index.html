@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>用 Hugo &#43; Github Action 打造自動更新的個人靜態網站</title>
+    
+</head>
+<body>
+    <header>
+        <h1>用 Hugo &#43; Github Action 打造自動更新的個人靜態網站</h1>
+        <p>Published: July 8, 2024</p>
+    </header>
+    <main>
+        <h2 id="前言從一篇文章開始的靈感">前言：從一篇文章開始的靈感</h2>
+<p>感謝 <a href="https://kucw.github.io">kucw</a> 的教學文，讓我認識了 <strong>Hugo</strong> 和 <strong>GitHub Pages</strong>。</p>
+<p>先前我已經透過 Streamlit 打造自己的動態網站，雖然可以即時執行程式，但因需要額外運算資源且定期需重啟，於是我希望能有一個<strong>常駐、穩定且支援自動更新的靜態網站</strong>。</p>
+<p>這篇文章紀錄我如何一步一步用 <strong>Cursor</strong>、<strong>Hugo</strong>、<strong>GitHub Actions</strong> 建立個人網站。<br>
+👉 網站連結：<a href="https://1daniel3333.github.io/about/">1daniel3333.github.io</a></p>
+<hr>
+<h2 id="一技術架構概覽">一、技術架構概覽</h2>
+<p>本專案使用到的工具與技術如下：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>介紹</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cursor</strong></td>
+<td>AI 友善的開發環境，類似 VSCode，但內建 AI 協作功能。</td>
+</tr>
+<tr>
+<td><strong>Hugo</strong></td>
+<td>輕量級靜態網站產生器，適合技術人快速打造部落格或文件站。</td>
+</tr>
+<tr>
+<td><strong>GitHub Pages</strong></td>
+<td>GitHub 提供的免費靜態網站托管平台。</td>
+</tr>
+<tr>
+<td><strong>GitHub Actions</strong></td>
+<td>CI/CD 自動化工具，可設定類似 crontab 的排程任務。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="二實作流程詳解">二、實作流程詳解</h2>
+<h3 id="1-使用-cursor--hugo-開發網站內容">1. 使用 Cursor + Hugo 開發網站內容</h3>
+<ul>
+<li>使用 <strong>Cursor</strong> 提高開發效率，藉由 AI 輔助修改文章與程式碼。</li>
+<li>利用 prompt 搜尋、下載合適的 Hugo 主題（theme），並進行客製化。</li>
+<li>完成內容撰寫與版面調整後，在本地端測試網站。</li>
+</ul>
+<h3 id="2-利用-github-pages-架站">2. 利用 GitHub Pages 架站</h3>
+<ul>
+<li>使用 Hugo 產生 <code>public/</code> 靜態網頁資料夾。</li>
+<li>將 <code>public/</code> 部署至 GitHub，透過 <code>username.github.io</code> 模式建立公開網站。</li>
+</ul>
+<h3 id="3-加入動態更新github-actions--python">3. 加入動態更新：GitHub Actions + Python</h3>
+<ul>
+<li>因為 Hugo 為靜態網站，無法即時更新資料，例如：RSS 訂閱、外部統計等。</li>
+<li>在<strong>私有儲存庫撰寫 Python 腳本</strong>，定期抓取資料或產生更新內容（Markdown / JSON）。</li>
+<li>使用 <strong>GitHub Actions</strong> 設定排程任務（cron job）：
+<ul>
+<li>執行 Python 腳本</li>
+<li>將更新內容 Commit 並 Push 至公開 Hugo 網站 repo</li>
+</ul>
+</li>
+<li>GitHub Pages 自動重新部署新內容。</li>
+</ul>
+<blockquote>
+<p>🙏 特別感謝 <a href="https://dev.zhgchg.li/ci-cd-%E5%AF%A6%E6%88%B0%E6%8C%87%E5%8D%97-%E4%BA%8C-github-actions-%E8%88%87-self-hosted-runner-%E4%BD%BF%E7%94%A8%E8%88%87%E5%BB%BA%E7%BD%AE%E5%A4%A7%E5%85%A8-404bd5c70040">zhgchg 的 GitHub Actions 教學文</a>，提供完整 CI/CD 教學範例。</p>
+</blockquote>
+<p><img alt="Workflow" src="/images/post/workflow.jpg"></p>
+<hr>
+<h2 id="三什麼是-cursorgithub-pagesgithub-actions">三、什麼是 Cursor、GitHub Pages、GitHub Actions？</h2>
+<h3 id="-cursor-是什麼">🔧 Cursor 是什麼？</h3>
+<ul>
+<li>類似 Visual Studio Code 的編輯器</li>
+<li>內建 AI 助手功能</li>
+<li>支援 Chat 介面、解釋程式碼、快速重構等</li>
+</ul>
+<h3 id="-github-pages-是什麼">🌍 GitHub Pages 是什麼？</h3>
+<ul>
+<li>GitHub 提供的<strong>免費靜態網站托管服務</strong></li>
+<li>適合用於部落格、個人頁面或技術文件網站</li>
+</ul>
+<h3 id="-github-actions-是什麼">⚙️ GitHub Actions 是什麼？</h3>
+<ul>
+<li>GitHub 的 CI/CD 工具</li>
+<li>支援：
+<ul>
+<li>Push 時自動部署</li>
+<li>設定定時排程（cron）</li>
+<li>自訂觸發流程執行任務</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四後記與下一步">四、後記與下一步</h2>
+<p>雖然這個專案概念簡單，但實作過程整合了：</p>
+<ul>
+<li>前後端開發流程</li>
+<li>CI/CD 自動化部署</li>
+<li>定時排程與資料更新</li>
+</ul>
+<h3 id="-下一步規劃">✅ 下一步規劃</h3>
+<ul>
+<li>增加留言系統（如 Disqus 或 Giscus）</li>
+<li>監控 GitHub Actions 任務結果與 Log</li>
+<li>加入資料視覺化與 API 查詢功能</li>
+</ul>
+<hr>
+<h2 id="-歡迎交流">📬 歡迎交流</h2>
+<p>如果你也對 Hugo + GitHub Actions 有興趣，歡迎 Fork 本專案、留言交流或分享你的應用案例！</p>
+<ul>
+<li>GitHub: <a href="https://github.com/1daniel3333">@1daniel3333</a></li>
+<li>Medium: <a href="https://medium.com/@p123456dan.mse99">@p123456dan.mse99</a></li>
+</ul>
+
+    </main>
+    <footer>
+        
+    </footer>
+</body>
+</html>

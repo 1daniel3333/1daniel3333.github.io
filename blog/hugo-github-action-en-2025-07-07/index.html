@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Build an Auto-Updating Personal Static Website with Hugo &#43; GitHub Actions</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Build an Auto-Updating Personal Static Website with Hugo &#43; GitHub Actions</h1>
+        <p>Published: July 8, 2024</p>
+    </header>
+    <main>
+        <p>Inspired by this <a href="https://kucw.io/blog/2021/1/from-medium-to-github/">article</a>, I was introduced to Hugo and GitHub Pages. I’ve always wanted to build a personal website — not just a blog, but one that updates itself regularly with data I collect or subscribe to. This post documents how I combined <strong>Cursor</strong>, <strong>Hugo</strong>, <strong>GitHub Actions</strong>, and <strong>GitHub Pages</strong> to build an auto-updating personal website.</p>
+<hr>
+<h2 id="-project-goal">🥅 Project Goal</h2>
+<p>Create a clean, Hugo-based personal website and use <strong>GitHub Actions</strong> as a scheduling engine (like Linux <code>crontab</code>) to regularly run Python scripts for data crawling or dynamic updates. Then, automatically push the new content to GitHub Pages for instant deployment.</p>
+<hr>
+<h2 id="-development-workflow">🛠 Development Workflow</h2>
+<h3 id="step-1-develop-with-cursor-and-hugo">Step 1: Develop with Cursor and Hugo</h3>
+<ul>
+<li>Used <strong>Cursor</strong>, an AI-enhanced IDE (like VSCode + ChatGPT), for all development.</li>
+<li>Initialized site using Hugo.</li>
+<li>Fetched and customized a theme with prompts.</li>
+<li>Modified layout and content to fit my needs.</li>
+<li>Tested the site locally.</li>
+</ul>
+<h3 id="step-2-deploy-via-github-pages">Step 2: Deploy via GitHub Pages</h3>
+<ul>
+<li>Hosted the finished Hugo site using <strong>GitHub Pages</strong>.</li>
+</ul>
+<hr>
+<h2 id="-making-static-sites-auto-update">🔁 Making Static Sites Auto-Update</h2>
+<p>Since Hugo generates static pages, it doesn’t update dynamically. I wanted some sections — like data subscriptions, analytics, or newsletters — to update regularly.</p>
+<h3 id="my-solution">My Solution:</h3>
+<ol>
+<li>Create a <strong>private repo</strong> where Python scripts fetch and format dynamic content.</li>
+<li>Use <strong>GitHub Actions</strong> with cron syntax to run scripts on a schedule (e.g., daily).</li>
+<li>Scripts generate updated Markdown or JSON files and push them to the <strong>public Hugo repo</strong>.</li>
+<li>GitHub Pages <strong>auto-deploys</strong> the updated site.</li>
+</ol>
+<blockquote>
+<p>🔗 Inspired by this GitHub Actions tutorial:<br>
+<a href="https://dev.zhgchg.li/ci-cd-%E5%AF%A6%E6%88%B0%E6%8C%87%E5%8D%97-%E4%BA%8C-github-actions-%E8%88%87-self-hosted-runner-%E4%BD%BF%E7%94%A8%E8%88%87%E5%BB%BA%E7%BD%AE%E5%A4%A7%E5%85%A8-404bd5c70040">CI/CD 實戰指南（二）GitHub Actions 與 Self-hosted Runner 使用與建置大全</a></p>
+</blockquote>
+<p><img alt="Workflow" src="/images/post/workflow.jpg"></p>
+<hr>
+<h2 id="-architecture-overview">🧱 Architecture Overview</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cursor</td>
+<td>Develop and customize Hugo content with AI help</td>
+</tr>
+<tr>
+<td>Hugo</td>
+<td>Generate the site and manage markdown/blog files</td>
+</tr>
+<tr>
+<td>GitHub Pages</td>
+<td>Host the site statically</td>
+</tr>
+<tr>
+<td>GitHub Actions</td>
+<td>Automate content generation and deployment</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>(Optional) Fetch and format external data</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-final-thoughts">📝 Final Thoughts</h2>
+<p>Although the concept is simple, this project integrates:</p>
+<ul>
+<li>Static site generation</li>
+<li>Dynamic data updates</li>
+<li>Scheduled automation</li>
+<li>CI/CD concepts</li>
+</ul>
+<p>It taught me how to use <strong>GitHub Actions not only for deployment, but as a programmable cron server</strong>.</p>
+<h3 id="future-plans">Future Plans:</h3>
+<ul>
+<li>Add a comment system (e.g., Disqus or Giscus)</li>
+<li>Track update logs from GitHub Actions</li>
+<li>Add APIs or data visualizations</li>
+</ul>
+<hr>
+<h2 id="-acknowledgments">🙏 Acknowledgments</h2>
+<p>Special thanks to the following articles:</p>
+<ul>
+<li><strong>From Medium to GitHub</strong> — by <em>kucw</em></li>
+<li><strong>CI/CD + GitHub Actions Guide</strong> — by <em>zhgchg</em></li>
+</ul>
+<p>If you found this useful, feel free to fork the repo or share your own ideas!</p>
+<ul>
+<li>GitHub: <a href="https://github.com/1daniel3333">@1daniel3333</a></li>
+<li>Medium: <a href="https://medium.com/@p123456dan.mse99">@p123456dan.mse99</a></li>
+</ul>
+
+    </main>
+    <footer>
+        
+    </footer>
+</body>
+</html>

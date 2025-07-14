@@ -1,19 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>SEO on Dan&#39;s Blog | Semiconductor Engineer &amp; Full-Stack Developer</title>
-    <link>https://1daniel3333.github.io/tags/seo/</link>
-    <description>Recent content in SEO on Dan&#39;s Blog | Semiconductor Engineer &amp; Full-Stack Developer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 08 Jul 2024 10:00:00 +0800</lastBuildDate>
-    <atom:link href="https://1daniel3333.github.io/tags/seo/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>用 Hugo &#43; Github Action 打造自動更新的個人靜態網站</title>
-      <link>https://1daniel3333.github.io/blog/hugo-github-action-zh-2025-07-07/</link>
-      <pubDate>Mon, 08 Jul 2024 10:00:00 +0800</pubDate>
-      <guid>https://1daniel3333.github.io/blog/hugo-github-action-zh-2025-07-07/</guid>
-      <description>前言：從一篇文章開始的靈感 感謝 kucw 的教學文，讓我認識了 Hugo 和 GitHub Pages。&#xA;先前我已經透過 Streamlit 打造自己的動態網站，雖然可以即時執行程式，但因需要額外運算資源且定期需重啟，於是我希望能有一個常駐、穩定且支援自動更新的靜態網站。</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SEO on Dan's Blog | Semiconductor Engineer &amp; Full-Stack Developer</title><link>https://1daniel3333.github.io/tags/seo/</link><description>Recent content in SEO on Dan's Blog | Semiconductor Engineer &amp; Full-Stack Developer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 08 Jul 2024 10:00:00 +0800</lastBuildDate><atom:link href="https://1daniel3333.github.io/tags/seo/index.xml" rel="self" type="application/rss+xml"/><item><title>用 Hugo + Github Action 打造自動更新的個人靜態網站</title><link>https://1daniel3333.github.io/blog/hugo-github-action-zh-2025-07-07/</link><pubDate>Mon, 08 Jul 2024 10:00:00 +0800</pubDate><guid>https://1daniel3333.github.io/blog/hugo-github-action-zh-2025-07-07/</guid><description>前言：從一篇文章開始的靈感 感謝 kucw 的教學文，讓我認識了 Hugo 和 GitHub Pages。
+先前我已經透過 Streamlit 打造自己的動態網站，雖然可以即時執行程式，但因需要額外運算資源且定期需重啟，於是我希望能有一個常駐、穩定且支援自動更新的靜態網站。</description></item></channel></rss>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>買房 vs. 租房+投資 30年資產驗證工具 (參數分離版)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .result-card {
+            border: 2px solid transparent;
+            transition: all 0.3s ease-in-out;
+        }
+        .winner {
+            border-color: #10b981;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            transform: translateY(-5px);
+        }
+        .loser {
+             border-color: #f87171;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        .input-group label, .input-group .label-text {
+            display: block;
+            font-weight: 500;
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid #d1d5db;
+            background-color: #f9fafb;
+        }
+        .scenario-toggle {
+            display: flex;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .scenario-toggle button {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            color: #374151;
+        }
+        .scenario-toggle button.active {
+            background-color: #3b82f6;
+            color: white;
+            font-weight: 600;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.875rem;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        #advanced-settings {
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+        }
+        .advanced-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">買房 vs. 租房+投資</h1>
+            <p class="text-lg text-gray-600 mt-2">30年資產淨值動態驗證工具</p>
+            <div class="mt-4 text-sm text-gray-500">
+                <a href="https://www.youtube.com/watch?v=hIQ694t9rOs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center hover:text-blue-600 transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" clip-rule="evenodd"></path></svg>
+                    數據與概念參考自：清流君影片
+                </a>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Settings Column -->
+            <div class="lg:col-span-1">
+                <div class="card">
+                    <h2 class="text-xl font-bold mb-4 text-gray-700">參數設定區</h2>
+                    
+                    <div class="input-group">
+                        <label for="scenario">市場預期情境</label>
+                        <div class="scenario-toggle" id="scenario-toggle">
+                            <button data-scenario="pessimistic">悲觀</button>
+                            <button data-scenario="neutral" class="active">中性</button>
+                            <button data-scenario="optimistic">樂觀</button>
+                        </div>
+                    </div>
+                    
+                    <hr class="my-6">
+
+                    <!-- Scenario A Parameters -->
+                    <h3 class="text-lg font-semibold mb-3 text-blue-600">情境A：買房參數</h3>
+                    <div class="input-group"><label for="housePrice">房屋總價 (萬)</label><input type="number" id="housePrice" value="1200"></div>
+                    <div class="input-group"><label for="downPaymentRate">頭期款比例 (%)</label><input type="number" id="downPaymentRate" value="20"></div>
+                    <div class="input-group"><label for="loanTerm">貸款年限 (年)</label><input type="number" id="loanTerm" value="30"></div>
+                    <div class="input-group"><label for="interestRate">貸款年利率 (%)</label><input type="number" id="interestRate" step="0.01" value="2.1"></div>
+                    <div class="input-group"><label for="propertyAppreciationRate">房價年均增值率 (%)</label><input type="number" id="propertyAppreciationRate" step="0.1" value="3"></div>
+
+                    <!-- Scenario B Parameters -->
+                    <hr class="my-6">
+                    <h3 class="text-lg font-semibold mb-3 text-emerald-600">情境B：租房與投資參數</h3>
+                    <div class="input-group"><label for="monthlyRent">每月租金 (元)</label><input type="number" id="monthlyRent" value="40000"></div>
+                    <div class="input-group"><label for="rentGrowthRate">租金年均增長率 (%)</label><input type="number" id="rentGrowthRate" step="0.1" value="1"></div>
+                    <div class="input-group"><label for="etfReturnRate">ETF年均報酬率 (%)</label><input type="number" id="etfReturnRate" step="0.1" value="7"></div>
+
+                    <hr class="my-6">
+
+                    <!-- Advanced Settings Toggle -->
+                    <div class="flex items-center justify-between">
+                        <label for="advancedToggle" class="text-lg font-semibold text-gray-700 cursor-pointer">進階微調模式 (買房成本)</label>
+                        <input type="checkbox" id="advancedToggle" class="h-6 w-6 rounded text-blue-600 focus:ring-blue-500 border-gray-300 cursor-pointer">
+                    </div>
+
+                    <!-- Advanced Settings Section -->
+                    <div id="advanced-settings" class="hidden mt-4 pt-4 border-t">
+                        <h4 class="text-md font-semibold mb-3 text-gray-600">一次性購屋成本 (元)</h4>
+                        <div class="advanced-grid">
+                            <div class="input-group"><label for="brokerFee">仲介費</label><input type="number" id="brokerFee" value="240000"></div>
+                            <div class="input-group"><label for="deedTax">契稅</label><input type="number" id="deedTax" value="216000"></div>
+                            <div class="input-group"><label for="renovationFee">裝潢費</label><input type="number" id="renovationFee" value="200000"></div>
+                            <div class="input-group"><label for="applianceFee">家電費</label><input type="number" id="applianceFee" value="300000"></div>
+                            <div class="input-group"><label for="stampDuty">印花稅</label><input type="number" id="stampDuty" value="3600"></div>
+                            <div class="input-group"><label for="registrationFee">登記規費</label><input type="number" id="registrationFee" value="3600"></div>
+                            <div class="input-group"><label for="loanSetupFee">貸款設定費</label><input type="number" id="loanSetupFee" value="11520"></div>
+                            <div class="input-group"><label for="loanProcessingFee">貸款手續費</label><input type="number" id="loanProcessingFee" value="3000"></div>
+                            <div class="input-group"><label for="escrowFee">履保費 (半價)</label><input type="number" id="escrowFee" value="360"></div>
+                            <div class="input-group"><label for="agentFee">代書費</label><input type="number" id="agentFee" value="12000"></div>
+                            <div class="input-group"><label for="certificateFee">書狀費</label><input type="number" id="certificateFee" value="800"></div>
+                        </div>
+                        <h4 class="text-md font-semibold mt-4 mb-3 text-gray-600">每年持有成本</h4>
+                        <div class="advanced-grid">
+                            <div class="input-group"><label for="managementFee">管理費 (月繳)</label><input type="number" id="managementFee" value="1200"></div>
+                            <div class="input-group"><label for="insuranceFee">保險費 (年繳)</label><input type="number" id="insuranceFee" value="10000"></div>
+                            <div class="input-group"><label for="maintenanceFee">維修準備金 (年繳)</label><input type="number" id="maintenanceFee" value="120000"></div>
+                            <div class="input-group"><label for="houseDepreciationRate">房屋折舊率 (%)</label><input type="number" id="houseDepreciationRate" step="0.1" value="0.6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Column -->
+            <div class="lg:col-span-2">
+                <div id="buy-card" class="card result-card">
+                    <h2 class="text-2xl font-bold text-blue-700 mb-3">情境A：貸款買房</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                        <div><p class="text-sm text-gray-500">最終房屋價值</p><p id="futureHouseValue" class="text-2xl font-semibold">-</p></div>
+                        <div><p class="text-sm text-gray-500">最終貸款餘額</p><p id="remainingLoan" class="text-2xl font-semibold">-</p></div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="flex justify-between items-center"><span class="text-lg font-medium text-gray-800">最終資產淨值</span><span id="buyNetWorth" class="text-3xl font-bold text-blue-700">-</span></div>
+                    <div class="mt-4 p-3 bg-blue-50 rounded-lg text-sm">
+                        <h4 class="font-semibold mb-2">成本細項 <span class="tooltip">ⓘ<span class="tooltiptext">這些成本已反映在「租房+投資」情境的初始投資本金中，讓比較基礎更公平。</span></span></h4>
+                        <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-gray-600">
+                            <p>頭期款: <span id="downPaymentValue">-</span></p>
+                            <p>一次性費用: <span id="oneTimeFees">-</span></p>
+                            <p>每月房貸: <span id="monthlyMortgage">-</span></p>
+                            <p>月均持有成本: <span id="monthlyHoldingCost">-</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="rent-card" class="card result-card">
+                    <h2 class="text-2xl font-bold text-emerald-700 mb-3">情境B：租房 + 投資ETF</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                        <div><p class="text-sm text-gray-500">初始投資本金 <span class="tooltip">ⓘ<span class="tooltiptext">買房的頭期款+所有一次性費用，是您第一天就能投入市場的資金。</span></span></p><p id="initialInvestment" class="text-2xl font-semibold">-</p></div>
+                        <div><p class="text-sm text-gray-500">首年每月可多投資金額 <span class="tooltip">ⓘ<span class="tooltiptext">買房總月支出 - 租房月租金。此金額會隨租金上漲而逐年減少。</span></span></p><p id="monthlyInvestment" class="text-2xl font-semibold">-</p></div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="flex justify-between items-center"><span class="text-lg font-medium text-gray-800">最終資產淨值</span><span id="rentNetWorth" class="text-3xl font-bold text-emerald-700">-</span></div>
+                </div>
+
+                <div id="conclusion-card" class="card text-center bg-gray-800 text-white">
+                    <h2 class="text-2xl font-bold mb-2">最終結論</h2>
+                    <p id="conclusionText" class="text-lg">請調整參數以進行計算。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputs = document.querySelectorAll('input');
+        const scenarioToggle = document.getElementById('scenario-toggle');
+        const advancedToggle = document.getElementById('advancedToggle');
+        const advancedSettings = document.getElementById('advanced-settings');
+
+        const scenarios = {
+            pessimistic: { property: 0, etf: 5 },
+            neutral: { property: 3, etf: 7 },
+            optimistic: { property: 5, etf: 11 }
+        };
+
+        const getVal = (id) => parseFloat(document.getElementById(id).value) || 0;
+        const formatCurrency = (num) => {
+            if (isNaN(num) || !isFinite(num)) return '計算中...';
+            const absNum = Math.abs(num);
+            if (absNum >= 100000000) return `${(num / 100000000).toFixed(2)} 億`;
+            if (absNum >= 10000) return `${(num / 10000).toFixed(0)} 萬`;
+            return `${num.toFixed(0)} 元`;
+        };
+
+        function calculate() {
+            const isAdvancedMode = advancedToggle.checked;
+            
+            // --- Get Primary Values ---
+            const housePrice = getVal('housePrice') * 10000;
+            const downPaymentRate = getVal('downPaymentRate') / 100;
+            const loanTerm = getVal('loanTerm');
+            const interestRate = getVal('interestRate') / 100;
+            const propertyAppreciationRate = getVal('propertyAppreciationRate') / 100;
+            const monthlyRent = getVal('monthlyRent');
+            const rentGrowthRate = getVal('rentGrowthRate') / 100;
+            const etfReturnRate = getVal('etfReturnRate') / 100;
+            const loanAmount = housePrice * (1 - downPaymentRate);
+
+            // --- Define Cost Variables ---
+            let oneTimeFees, monthlyHoldingCost;
+
+            if (isAdvancedMode) {
+                oneTimeFees = getVal('brokerFee') + getVal('deedTax') + getVal('renovationFee') + getVal('applianceFee') + getVal('stampDuty') + getVal('registrationFee') + getVal('loanSetupFee') + getVal('loanProcessingFee') + getVal('escrowFee') + getVal('agentFee') + getVal('certificateFee');
+                
+                const annualDepreciationCost = housePrice * (getVal('houseDepreciationRate') / 100);
+                monthlyHoldingCost = getVal('managementFee') + (getVal('insuranceFee') / 12) + (getVal('maintenanceFee') / 12) + (annualDepreciationCost / 12);
+
+            } else {
+                const assessedValue = housePrice * 0.3;
+                oneTimeFees = (assessedValue * 0.06) + (assessedValue * 0.001) + (assessedValue * 0.001) + (loanAmount * 1.2 * 0.001) + 800 + (housePrice * 0.00006 * 0.5) + (housePrice * 0.02) + 3000 + 200000 + 300000 + 12000;
+                
+                const default_annualDepreciationCost = housePrice * 0.006; // 0.6% depreciation
+                monthlyHoldingCost = 1200 + (10000 / 12) + ((housePrice * 0.01) / 12) + (default_annualDepreciationCost / 12);
+            }
+
+            // --- Scenario A: Buy a House ---
+            const downPaymentValue = housePrice * downPaymentRate;
+            const monthlyInterestRate = interestRate / 12;
+            const numberOfPayments = loanTerm * 12;
+            let monthlyMortgage = monthlyInterestRate > 0 ? loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1) : loanAmount / numberOfPayments;
+            
+            const totalMonthlyBuyCost = monthlyMortgage + monthlyHoldingCost;
+            const futureHouseValue = housePrice * Math.pow(1 + propertyAppreciationRate, loanTerm);
+            
+            let remainingLoan = loanAmount;
+            if (numberOfPayments > 0) {
+              for (let i = 0; i < numberOfPayments; i++) {
+                  const interestPaid = remainingLoan * monthlyInterestRate;
+                  const principalPaid = monthlyMortgage - interestPaid;
+                  remainingLoan -= principalPaid;
+              }
+            } else {
+              remainingLoan = 0;
+            }
+
+            const buyNetWorth = futureHouseValue - Math.max(0, remainingLoan);
+
+            // --- Scenario B: Rent + Invest ---
+            const initialInvestment = downPaymentValue + oneTimeFees;
+            let rentPortfolio = initialInvestment;
+            let currentMonthlyRent = monthlyRent;
+            const monthlyETFRate = Math.pow(1 + etfReturnRate, 1/12) - 1;
+
+            for (let year = 0; year < loanTerm; year++) {
+                const monthlyInvestment = totalMonthlyBuyCost - currentMonthlyRent;
+                for (let month = 0; month < 12; month++) {
+                    rentPortfolio *= (1 + monthlyETFRate);
+                    if (monthlyInvestment > 0) {
+                        rentPortfolio += monthlyInvestment;
+                    }
+                }
+                currentMonthlyRent *= (1 + rentGrowthRate);
+            }
+            const rentNetWorth = rentPortfolio;
+
+            // --- Update UI ---
+            updateUI({ buyNetWorth, rentNetWorth, futureHouseValue, remainingLoan: Math.max(0, remainingLoan), downPaymentValue, oneTimeFees, monthlyMortgage, monthlyHoldingCost, initialInvestment, totalMonthlyBuyCost, monthlyRent });
+        }
+
+        function updateUI(data) {
+            document.getElementById('futureHouseValue').textContent = formatCurrency(data.futureHouseValue);
+            document.getElementById('remainingLoan').textContent = formatCurrency(data.remainingLoan);
+            document.getElementById('buyNetWorth').textContent = formatCurrency(data.buyNetWorth);
+            document.getElementById('downPaymentValue').textContent = formatCurrency(data.downPaymentValue);
+            document.getElementById('oneTimeFees').textContent = formatCurrency(data.oneTimeFees);
+            document.getElementById('monthlyMortgage').textContent = formatCurrency(data.monthlyMortgage) + '/月';
+            document.getElementById('monthlyHoldingCost').textContent = formatCurrency(data.monthlyHoldingCost) + '/月';
+            document.getElementById('initialInvestment').textContent = formatCurrency(data.initialInvestment);
+            const firstYearMonthlyInvestment = data.totalMonthlyBuyCost - data.monthlyRent;
+            document.getElementById('monthlyInvestment').textContent = formatCurrency(firstYearMonthlyInvestment > 0 ? firstYearMonthlyInvestment : 0) + '/月';
+            document.getElementById('rentNetWorth').textContent = formatCurrency(data.rentNetWorth);
+            
+            const buyCard = document.getElementById('buy-card');
+            const rentCard = document.getElementById('rent-card');
+            const conclusionText = document.getElementById('conclusionText');
+            
+            buyCard.classList.remove('winner', 'loser');
+            rentCard.classList.remove('winner', 'loser');
+
+            if (data.buyNetWorth > data.rentNetWorth) {
+                conclusionText.innerHTML = `在目前設定下，<span class="text-blue-400 font-bold">【買房】</span>的資產淨值較高，多出 <span class="text-yellow-300 font-bold">${formatCurrency(data.buyNetWorth - data.rentNetWorth)}</span>。`;
+                buyCard.classList.add('winner');
+                rentCard.classList.add('loser');
+            } else {
+                conclusionText.innerHTML = `在目前設定下，<span class="text-emerald-400 font-bold">【租房+投資】</span>的資產淨值較高，多出 <span class="text-yellow-300 font-bold">${formatCurrency(data.rentNetWorth - data.buyNetWorth)}</span>。`;
+                rentCard.classList.add('winner');
+                buyCard.classList.add('loser');
+            }
+        }
+
+        function handleScenarioChange(e) {
+            const selectedScenario = e.target.dataset.scenario;
+            if (!selectedScenario) return;
+            document.querySelectorAll('#scenario-toggle button').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            document.getElementById('propertyAppreciationRate').value = scenarios[selectedScenario].property;
+            document.getElementById('etfReturnRate').value = scenarios[selectedScenario].etf;
+            calculate();
+        }
+        
+        advancedToggle.addEventListener('change', () => {
+            advancedSettings.classList.toggle('hidden');
+            calculate();
+        });
+
+        inputs.forEach(input => input.addEventListener('input', calculate));
+        scenarioToggle.addEventListener('click', handleScenarioChange);
+
+        calculate();
+    });
+    </script>
+</body>
+</html>

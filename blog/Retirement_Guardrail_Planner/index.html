@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GK 動態提領計算器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Tailwind gray-100 */
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* Tailwind rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Tailwind shadow-md */
+        }
+        input[type="number"] {
+            appearance: textfield; /* Remove spinner for number inputs */
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 sm:p-8 flex items-center justify-center min-h-screen">
+    <div class="container w-full">
+        <h1 class="text-3xl font-bold text-blue-600 mb-6 text-center">GK 動態提領計算器</h1>
+        <p class="text-gray-700 mb-8 text-center">請輸入您的財務數據，以計算今年的建議提領金額。</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- 前一年年初投資組合總值 -->
+            <div>
+                <label for="previousYearStartPortfolioValue" class="block text-gray-700 text-sm font-bold mb-2">
+                    前一年年初投資組合總值 ($)
+                </label>
+                <input type="number" id="previousYearStartPortfolioValue" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="例如: 1000000" value="1000000">
+            </div>
+
+            <!-- 當年初投資組合總值 -->
+            <div>
+                <label for="currentPortfolioValue" class="block text-gray-700 text-sm font-bold mb-2">
+                    當年初投資組合總值 ($)
+                </label>
+                <input type="number" id="currentPortfolioValue" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="例如: 950000" value="950000">
+            </div>
+
+            <!-- 去年提領金額 -->
+            <div>
+                <label for="lastYearWithdrawal" class="block text-gray-700 text-sm font-bold mb-2">
+                    去年提領金額 ($)
+                </label>
+                <input type="number" id="lastYearWithdrawal" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="例如: 40000" value="40000">
+            </div>
+
+            <!-- 通膨率 (%) -->
+            <div>
+                <label for="inflationRate" class="block text-gray-700 text-sm font-bold mb-2">
+                    通膨率 (%)
+                </label>
+                <input type="number" id="inflationRate" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="例如: 3 (代表3%)" value="3">
+            </div>
+
+            <!-- 初始提領率 (%) -->
+            <div>
+                <label for="initialWithdrawalRate" class="block text-gray-700 text-sm font-bold mb-2">
+                    初始提領率 (%)
+                </label>
+                <input type="number" id="initialWithdrawalRate" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="例如: 4 (代表4%)" value="4">
+            </div>
+        </div>
+
+        <div class="flex justify-center mb-8">
+            <button id="calculateBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-300 ease-in-out">
+                計算今年提領金額
+            </button>
+        </div>
+
+        <div id="results" class="bg-blue-50 p-6 rounded-lg border border-blue-200 hidden">
+            <h2 class="text-xl font-bold text-blue-800 mb-4">計算結果</h2>
+            <p class="text-gray-800 mb-2">
+                <span class="font-semibold">去年投資報酬率:</span> <span id="lastYearReturnDisplay" class="text-blue-700"></span>
+            </p>
+            <p class="text-gray-800 mb-2">
+                <span class="font-semibold">當前計算提領率:</span> <span id="currentCalculatedRateDisplay" class="text-blue-700"></span>
+            </p>
+            <p class="text-gray-800 mb-2">
+                <span class="font-semibold">觸發規則:</span> <span id="triggeredRules" class="text-blue-700"></span>
+            </p>
+            <p class="text-gray-800 mb-2">
+                <span class="font-semibold">建議行動:</span> <span id="recommendedAction" class="text-blue-700"></span>
+            </p>
+            <p class="text-gray-800 text-lg">
+                <span class="font-semibold">今年建議提領金額:</span> <span id="calculatedWithdrawal" class="text-green-600 font-bold text-2xl"></span>
+            </p>
+        </div>
+
+        <div id="error-message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mt-4 hidden" role="alert">
+            <strong class="font-bold">輸入錯誤!</strong>
+            <span class="block sm:inline" id="error-text">請確保所有欄位都已填寫且為有效數字。</span>
+        </div>
+
+        <!-- YouTube Video Link -->
+        <div class="mt-10 text-center">
+            <p class="text-gray-700 mb-2">本計算器參考清流軍影片：</p>
+            <a href="https://www.youtube.com/watch?v=mT9wuGpgWSs" target="_blank" class="text-blue-500 hover:underline">
+                如何用動態提領法，讓你退休金領更多，還能多活30年?
+            </a>
+        </div>
+
+        <!-- GK Rules Explanation -->
+        <div class="mt-10 p-6 bg-gray-50 rounded-lg border border-gray-200">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">GK 動態提領規則說明</h2>
+            <p class="text-gray-700 mb-4">
+                GK 動態提領策略 (Guyton-Klinger rule) 是一種彈性的退休金提領方式，旨在根據市場表現調整提領金額，以延長退休金的壽命。它主要包含以下核心規則：
+            </p>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>
+                    <span class="font-semibold">通膨規則 (Inflation Rule)：</span>
+                    <ul>
+                        <li>如果前一年投資組合有獲利，今年的提領金額會隨通膨調整。</li>
+                        <li>如果前一年投資組合虧損，今年的提領金額則不隨通膨調整。</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="font-semibold">保本規則 (Capital Preservation Rule / 下行護欄)：</span>
+                    <ul>
+                        <li>當前計算的提領率如果高於初始提領率的 120% (即超出 20%)，則將今年的提領金額下調 10%。</li>
+                        <li>此規則旨在保護資產，避免在市場下跌時過度提領。</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="font-semibold">繁榮規則 (Prosperity Rule / 上行護欄)：</span>
+                    <ul>
+                        <li>當前計算的提領率如果低於初始提領率的 80% (即低於 20%)，則將今年的提領金額上調 10%。</li>
+                        <li>此規則讓您在資產表現良好時，可以適度增加提領金額，享受市場紅利。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Google Colab Link -->
+        <div class="mt-10 text-center">
+            <p class="text-gray-700 mb-2">您也可以透過 Python 程式碼進行參數微調與回測：</p>
+            <a href="https://colab.research.google.com/github/1daniel3333/Retirement_Guardrail_Planner/blob/main/GK_%E5%8B%95%E6%85%8B%E6%8F%90%E9%A0%98%E5%9B%9E%E6%B8%AC%E6%A8%A1%E6%93%AC.ipynb" target="_blank" class="text-blue-500 hover:underline">
+                Google Colab 回測範例
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('calculateBtn').addEventListener('click', calculateGKWithdrawal);
+
+        function calculateGKWithdrawal() {
+            const previousYearStartPortfolioValue = parseFloat(document.getElementById('previousYearStartPortfolioValue').value);
+            const currentPortfolioValue = parseFloat(document.getElementById('currentPortfolioValue').value); // This is This Year Start Portfolio Value
+            const lastYearWithdrawal = parseFloat(document.getElementById('lastYearWithdrawal').value);
+            const inflationRate = parseFloat(document.getElementById('inflationRate').value) / 100; // Convert to decimal
+            const initialWithdrawalRate = parseFloat(document.getElementById('initialWithdrawalRate').value) / 100; // Convert to decimal
+
+            const resultsDiv = document.getElementById('results');
+            const errorMessageDiv = document.getElementById('error-message');
+            const errorText = document.getElementById('error-text');
+
+            // Input validation
+            if (isNaN(previousYearStartPortfolioValue) || isNaN(currentPortfolioValue) || isNaN(lastYearWithdrawal) ||
+                isNaN(inflationRate) || isNaN(initialWithdrawalRate) ||
+                previousYearStartPortfolioValue <= 0 || currentPortfolioValue <= 0 || lastYearWithdrawal < 0 || initialWithdrawalRate <= 0) {
+                errorText.textContent = "請確保所有欄位都已填寫，且為有效數字 (所有投資組合總值和提領率需大於0)。";
+                errorMessageDiv.classList.remove('hidden');
+                resultsDiv.classList.add('hidden');
+                return;
+            } else {
+                errorMessageDiv.classList.add('hidden');
+            }
+
+            // Calculate lastYearReturn in the background
+            let lastYearReturn;
+            if (previousYearStartPortfolioValue === 0) { // Should be caught by validation, but as a safeguard
+                errorText.textContent = "前一年年初投資組合總值不能為零，無法計算報酬率。";
+                errorMessageDiv.classList.remove('hidden');
+                resultsDiv.classList.add('hidden');
+                return;
+            }
+            lastYearReturn = ((currentPortfolioValue + lastYearWithdrawal) / previousYearStartPortfolioValue) - 1;
+
+
+            let baseWithdrawal;
+            let triggeredRules = [];
+            let recommendedAction = "";
+
+            // 1. 通膨規則 (Inflation Rule)
+            if (lastYearReturn > 0) {
+                // 如果去年投資組合有獲利，今年的提領金額隨通膨調整
+                baseWithdrawal = lastYearWithdrawal * (1 + inflationRate);
+                triggeredRules.push("通膨規則 (去年有獲利，提領金額隨通膨調整)");
+            } else {
+                // 如果去年投資組合虧損，今年的提領金額不隨通膨調整
+                baseWithdrawal = lastYearWithdrawal;
+                triggeredRules.push("通膨規則 (去年虧損，提領金額不隨通膨調整)");
+            }
+
+            // 2. 計算當前計算提領率
+            const currentCalculatedRate = baseWithdrawal / currentPortfolioValue;
+            let finalWithdrawal = baseWithdrawal;
+
+            // 3. 保本規則 (Capital Preservation Rule - Lowering Withdrawal)
+            const upperGuardrailThreshold = initialWithdrawalRate * 1.2; // 初始提領率的 120%
+            if (currentCalculatedRate > upperGuardrailThreshold) {
+                finalWithdrawal = baseWithdrawal * 0.9; // 下調 10%
+                triggeredRules.push("保本規則 (當前提領率高於初始提領率的 120%，提領金額下調 10%)");
+                recommendedAction = "建議將提領金額下調 10% 以保護您的資產壽命。";
+            }
+
+            // 4. 繁榮規則 (Prosperity Rule - Raising Withdrawal)
+            const lowerGuardrailThreshold = initialWithdrawalRate * 0.8; // 初始提領率的 80%
+            if (currentCalculatedRate < lowerGuardrailThreshold) {
+                // 注意：如果同時觸發保本和繁榮規則 (理論上不會發生，因為條件互斥)，此處會覆蓋保本規則的調整
+                finalWithdrawal = baseWithdrawal * 1.1; // 上調 10%
+                triggeredRules.push("繁榮規則 (當前提領率低於初始提領率的 80%，提領金額上調 10%)");
+                recommendedAction = "恭喜！建議將提領金額上調 10% 以享受市場紅利。";
+            }
+
+            // 如果沒有觸發保本或繁榮規則
+            if (!recommendedAction) {
+                recommendedAction = "按照基本提領金額提領，未觸發保本或繁榮規則。";
+                triggeredRules.push("未觸發保本或繁榮規則");
+            }
+
+            // 顯示結果
+            document.getElementById('lastYearReturnDisplay').textContent = `${(lastYearReturn * 100).toFixed(2)}%`;
+            document.getElementById('currentCalculatedRateDisplay').textContent = `${(currentCalculatedRate * 100).toFixed(2)}%`;
+            document.getElementById('triggeredRules').textContent = triggeredRules.join('； ');
+            document.getElementById('recommendedAction').textContent = recommendedAction;
+            document.getElementById('calculatedWithdrawal').textContent = `$${finalWithdrawal.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}`;
+
+            resultsDiv.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
